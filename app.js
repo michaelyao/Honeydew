@@ -3,7 +3,12 @@ var app = express();
 app.use(express.logger());
 
 app.get('/', function(request, response) {
-  response.send('Hello World!');
+  var res = {};
+  res.headers = request.headers;
+  res.ip = request.ip;
+  res.ips = request.ips;
+  response.send(JSON.stringify(res));
+
 });
 
 var port = process.env.PORT || 80;
